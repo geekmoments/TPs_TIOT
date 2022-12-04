@@ -1,5 +1,6 @@
 /*
 En una lista vacía hay 0 elementos
+Agregar un elemnto y comprobar que hay 1 elemento
 
 
 */
@@ -17,5 +18,16 @@ describe('En una lista vacia', function() {
 
 
     })
+
+});
+
+describe("Al agregar un elento a lista vacía",function(){
+
+    var lista = new Lista();
+    lista.add("clave","valor");
+    it("hay 1 elemento",function(){
+        assert.equal(lista.count(),1);
+    })
+
 
 });
