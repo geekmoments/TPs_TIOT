@@ -1,9 +1,12 @@
 module.exports = class Lista {
   
     #cantidad
+    #elementos
+
 
     constructor() {
         this.#cantidad=0;
+        this.#elementos=[];
     
   }
     count() {
@@ -12,8 +15,24 @@ module.exports = class Lista {
     }
 
     add(clave,valor) {
-        this.#cantidad++;
+        if (typeof (clave) == 'string') {
+        this.#elementos.push({'clave':clave,'valor':valor});
 
+        this.#cantidad++;
+        
+    }
+    return false;
+    
+    }
+    find(clave) {
+       
+        for (let i = 0; i < this.#elementos.length; i++) {
+            if (this.#elementos[i].clave==clave) {
+                return this.#elementos[i].valor;
+            }
+            
+        }
+    
     
     }
 
