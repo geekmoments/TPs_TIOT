@@ -12,7 +12,8 @@ module.exports = class Lista {
     }
 
     add(clave,valor) {
-        this.#cantidad=1;
+        this.#cantidad++;
+
     
     }
 
