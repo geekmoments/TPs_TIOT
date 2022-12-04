@@ -1,37 +1,47 @@
 module.exports = class Lista {
   
-    #cantidad
-    #elementos
+     #elementos
 
 
     constructor() {
-        this.#cantidad=0;
-        this.#elementos=[];
+         this.#elementos=[];
     
   }
+    indexOf(clave) {
+
+        for (let i = 0; i < this.#elementos.length; i++) {
+            if (this.#elementos[i].clave==clave) {
+                return i;
+            }
+            
+        }
+        return NaN;
+    
+    }
+
     count() {
-        return this.#cantidad;
+        return this.#elementos.length;
     
     }
 
     add(clave,valor) {
         if (typeof (clave) == 'string') {
-        this.#elementos.push({'clave':clave,'valor':valor});
-
-        this.#cantidad++;
-        
+             
+            if (isNaN(this.indexOf(clave))) {
+                this.#elementos.push({'clave':clave,'valor':valor});
+            }
+         
     }
     return false;
     
     }
     find(clave) {
-       
-        for (let i = 0; i < this.#elementos.length; i++) {
-            if (this.#elementos[i].clave==clave) {
-                return this.#elementos[i].valor;
-            }
+      var  indice = this.indexOf(clave);
+        if (!isNaN(indice)) {
+            return this.#elementos[indice].valor;
             
         }
+        return null;
     
     
     }

@@ -4,6 +4,9 @@ Agregar un elemnto y comprobar que hay 1 elemento
 En una lista vacía al agregar 2 elementos probar que hay 2 elementos
 En una lista vacía probar el error al agregar con clave vacía o que no son cadenas
 En una lista agregar una clave con un valor conocido consultar el valor asociado a la clave y comprobar que coinciden
+cuando se intenta agregar una clave duplicada devuelve error
+cuando se intenta  agregar una clave duplicada no cambia el valor de la clave
+cuando se intenta agrega una clave duplicada no cambia el tamaño de la lista
 */
 
 const assert = require('chai').assert;
@@ -46,17 +49,29 @@ describe("Al agregar un elento a lista vacía",function(){
 describe("Al agregar 2 elentos a lista vacía",function(){
 
     var lista = new Lista();
-    lista.add("clave","valor");
-    lista.add("clave2","valor2");
+    lista.add("uno",1);
+    lista.add("dos","2");
 
     it("hay 2 elementos",function(){
         assert.equal(lista.count(),2);
     })
     it("se puede recuperar el 1er valor apartir de la clave",function(){
-        assert.equal(lista.find("clave"),"valor");
+        assert.equal(lista.find("uno"),1);
      });
      it("se puede recuperar el 2do valor apartir de la clave",function(){
-        assert.equal(lista.find("clave2"),"valor2");
+        assert.equal(lista.find("dos"),2);
      });
 
+     describe("al intentar agregar  clave duplicada",function(){
+        var resultado = lista.add("uno",10);
+        it("devuelve un error",function(){
+            assert.isFalse(resultado);
+         })
+         it("no cambia el resultado asociado a la clave",function(){
+            assert.equal(lista.find("uno"),1);
+       })
+        it("no cambia el tamaño",function(){
+             assert.equal(lista.count(),2);
+        })
+    });
 });
