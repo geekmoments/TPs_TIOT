@@ -7,6 +7,9 @@ En una lista agregar una clave con un valor conocido consultar el valor asociado
 cuando se intenta agregar una clave duplicada devuelve error
 cuando se intenta  agregar una clave duplicada no cambia el valor de la clave
 cuando se intenta agrega una clave duplicada no cambia el tamaño de la lista
+En una lista con elementos, comprobar el error al tratar de actualizar una clave que no existe
+En una lista con elementos, comprobar el error al buscar una clave que no existe
+
 */
 
 const assert = require('chai').assert;
@@ -38,12 +41,13 @@ describe("Al agregar un elento a lista vacía",function(){
 
     var lista = new Lista();
     lista.add("clave","valor");
+
     it("hay 1 elemento",function(){
         assert.equal(lista.count(),1);
     })
     it("se puede recuperar el valor apartir de la clave",function(){
-        assert.equal(lista.find("clave"),"valor");
-     });
+        assert.equal(lista.find("clave").valor,"valor");
+     })
 
 });
 describe("Al agregar 2 elentos a lista vacía",function(){
@@ -56,10 +60,10 @@ describe("Al agregar 2 elentos a lista vacía",function(){
         assert.equal(lista.count(),2);
     })
     it("se puede recuperar el 1er valor apartir de la clave",function(){
-        assert.equal(lista.find("uno"),1);
+        assert.equal(lista.find("uno").valor,1);
      });
      it("se puede recuperar el 2do valor apartir de la clave",function(){
-        assert.equal(lista.find("dos"),2);
+        assert.equal(lista.find("dos").valor,2);
      });
 
      describe("al intentar agregar  clave duplicada",function(){
@@ -68,10 +72,32 @@ describe("Al agregar 2 elentos a lista vacía",function(){
             assert.isFalse(resultado);
          })
          it("no cambia el resultado asociado a la clave",function(){
-            assert.equal(lista.find("uno"),1);
+            assert.equal(lista.find("uno").valor,1);
        })
         it("no cambia el tamaño",function(){
              assert.equal(lista.count(),2);
         })
     });
 });
+
+describe("Cuando se busca una clave inexistente", function() {
+    var lista = new Lista();
+
+    it("Retorna false como resultado de la operación", function() {
+        assert.isFalse(lista.find("v"));
+    });
+});
+
+describe("Cuando se actualiza un elemento que no existe", function() {
+
+    var lista = new Lista();
+
+    it("Retorna falso", function() {
+        assert.isFalse(lista.update("nuevo", "valor"));
+    });
+
+  //  it("la cantidad de elementos no varía", function() {
+  //      assert.equal(0, lista.count());
+  //  });
+});
+

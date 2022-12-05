@@ -38,12 +38,22 @@ module.exports = class Lista {
     find(clave) {
       var  indice = this.indexOf(clave);
         if (!isNaN(indice)) {
-            return this.#elementos[indice].valor;
+            return {'indice':indice,'valor' :this.#elementos[indice].valor};
             
         }
-        return null;
+        return false;
     
     
+    }
+    update(clave,valor) {
+        var resultado = this.find(clave);
+
+        if (resultado) {
+            this.elementos[resultado.indice].valor = valor;
+            return true;
+        } else {
+            return false;
+        }
     }
 
   // ...
