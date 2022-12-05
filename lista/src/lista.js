@@ -49,11 +49,26 @@ module.exports = class Lista {
         var resultado = this.find(clave);
 
         if (resultado) {
-            this.elementos[resultado.indice].valor = valor;
+            this.#elementos[resultado.indice].valor = valor;
             return true;
         } else {
             return false;
         }
+    }
+    delete(clave) {
+        var resultado = this.find(clave);
+
+        if (resultado) {
+            var i = resultado.indice;
+
+            if (i >= 0) {
+                this.#elementos.splice(i, 1);
+                this.cantidad--;
+                return true;
+            }
+        }
+
+        return false;
     }
 
   // ...

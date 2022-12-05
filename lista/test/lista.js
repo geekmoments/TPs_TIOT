@@ -8,7 +8,10 @@ cuando se intenta agregar una clave duplicada devuelve error
 cuando se intenta  agregar una clave duplicada no cambia el valor de la clave
 cuando se intenta agrega una clave duplicada no cambia el tamaño de la lista
 En una lista con elementos, comprobar el error al tratar de actualizar una clave que no existe
+Cuando se actualiza un elemento se retorna true como exito de operación
 En una lista con elementos, comprobar el error al buscar una clave que no existe
+Cuando se elimina un elemento se retorna true como exito de operación
+Cuando se intenta eliminae un elemento inexistente se retorna false como resultado de operación
 
 */
 
@@ -88,6 +91,20 @@ describe("Cuando se busca una clave inexistente", function() {
     });
 });
 
+describe("cuando se actualiza un elemento que existe", function() {
+
+    var lista = new Lista();
+    lista.add("uno", "1");
+
+    it("retorna true como resultado de la operación", function() {
+        assert.isTrue(lista.update("uno", "1"));
+    });
+
+    it("la cantidad de elementos no varía", function() {
+        assert.equal(1, lista.count());
+    });
+});
+
 describe("Cuando se actualiza un elemento que no existe", function() {
 
     var lista = new Lista();
@@ -96,8 +113,36 @@ describe("Cuando se actualiza un elemento que no existe", function() {
         assert.isFalse(lista.update("nuevo", "valor"));
     });
 
-  //  it("la cantidad de elementos no varía", function() {
-  //      assert.equal(0, lista.count());
-  //  });
+   it("la cantidad de elementos no varía", function() {
+      assert.equal(lista.count(),0);
+    });
 });
 
+describe("Cuando se elimina un elemento que existente", function() {
+
+    var lista = new Lista();
+    lista.add("uno", 1);
+    var resultado = lista.count();
+
+    it("Valida con true confirmando la operación", function() {
+        assert.isTrue(lista.delete("uno"));
+    });
+
+    it("Los disminuye el tamaño", function() {
+        assert.equal(resultado - 1, lista.count());
+    });
+});
+
+describe("Cuando se intenta eliminr elemento inexistente", function() {
+
+    var lista = new Lista();
+    lista.add("clave", "valor");
+
+    it("retorna false como resultado de la operación", function() {
+        assert.isFalse(lista.delete("uno"));
+    });
+
+    it("la cantidad de elementos no varía", function() {
+        assert.equal(lista.count(),1);
+    });
+});
