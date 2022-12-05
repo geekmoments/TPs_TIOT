@@ -12,7 +12,7 @@ Cuando se actualiza un elemento se retorna true como exito de operación
 En una lista con elementos, comprobar el error al buscar una clave que no existe
 Cuando se elimina un elemento se retorna true como exito de operación
 Cuando se intenta eliminae un elemento inexistente se retorna false como resultado de operación
-
+Cesar Cruz
 */
 
 const assert = require('chai').assert;

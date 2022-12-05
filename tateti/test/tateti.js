@@ -5,10 +5,12 @@
  * No debería aceptar un movimiento de un jugador al que no le toca el turno
  * Si un jugador quiere marcar una casilla ocupada entonces tiene un error x
  * Si tres columnas tienen la marca de un mismo jugador entonces ese jugador gana la partida x
- * Si tres filas tienen la marca de un mismo jugador entonces ese jugador gana la partida x
- * Si una de las dos diagonales tienen la marca de un mismo jugador entonces este jugador gana la partida x
- * Si no hay mas lugares vacios en el tablero es un empate x
- */
+ * Si tres filas tienen la marca de un mismo jugador entonces ese jugador gana la partida 
+ * Si una de las dos diagonales tienen la marca de un mismo jugador entonces este jugador gana la partida 
+ * Si no hay mas lugares vacios en el tablero es un empate 
+ 
+Cesar Cruz
+*/
 
 let chai = require("chai");
 let chaihttp = require("chai-http");
